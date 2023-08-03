@@ -1,0 +1,2 @@
+GET https://servicodados.ibge.gov.br/api/v1/publicacoes/agropecuaria/?qtd=100&page=1 HTTP/1.1
+content-type: application/json
