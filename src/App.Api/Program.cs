@@ -1,3 +1,5 @@
+using Serilog;
+
 namespace App.Api;
 
 /// <summary>
@@ -13,10 +15,28 @@ internal static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        var app = builder
-                    .ConfigureServices()
-                    .ConfigurePipeline();
+        builder.Host.UseSerilog();
 
-        app.Run();
+        Log.Logger = new LoggerConfiguration()
+                    .ReadFrom.Configuration(builder.Configuration)
+                    .CreateLogger();
+
+        try
+        {
+            var app = builder
+                        .ConfigureServices()
+                        .ConfigurePipeline();
+
+            app.Run();
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal("{Action} {@Exception}", "A Aplicação encerrou inesperadamente.", ex);
+            throw;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 }
