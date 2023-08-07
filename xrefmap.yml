@@ -80,3 +80,6 @@ references:
   isSpec: "True"
   fullName: App.Api.Program.Main
   nameWithType: Program.Main
+- uid: App.Api/1.0
+  name: App.Api
+  href: restapi/swagger.html

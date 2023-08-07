@@ -100,6 +100,29 @@
       "version": ""
     },
     {
+      "type": "RestApi",
+      "source_relative_path": "restapi/swagger.json",
+      "output": {
+        ".html": {
+          "relative_path": "restapi/swagger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "restapi/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "restapi/toc.html"
+        },
+        ".json": {
+          "relative_path": "restapi/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
