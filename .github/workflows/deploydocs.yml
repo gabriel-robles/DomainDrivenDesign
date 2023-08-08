@@ -33,7 +33,8 @@ jobs:
 
     - name: Generate coverage report
       run: |
-        coverlet tests/App.Api.UnitTest/bin/Debug/net6.0/App.Api.UnitTest.dll --target "dotnet" --targetargs "test tests/App.Api.UnitTest --no-build" --format cobertura
+        dotnet test --configuration Release --verbosity normal
+        coverlet tests/App.Api.UnitTest/bin/Release/net6.0/App.Api.UnitTest.dll --target "dotnet" --targetargs "test tests/App.Api.UnitTest --no-build" --format cobertura
         reportgenerator -reports:coverage.cobertura.xml -targetdir:docs/_site/coveragereport -reportTypes:html
 
     - name: Deploy
