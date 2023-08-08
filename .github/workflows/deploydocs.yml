@@ -16,17 +16,25 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+
     - name: Dotnet Setup
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.403
+
     - name: Install tools
-      run: dotnet tool update -g docfx && dotnet tool install -g coverlet.console && dotnet tool install -g dotnet-reportgenerator-globaltool
+      run: |
+        dotnet tool update -g docfx
+        dotnet tool install -g coverlet.console
+        dotnet tool install -g dotnet-reportgenerator-globaltool
+
     - name: Build Docs
       run: docfx docs/docfx.json
 
     - name: Generate coverage report
-      run: scripts/RunTests.sh
+      run: |
+        coverlet tests/App.Api.UnitTest/bin/Debug/net6.0/App.Api.UnitTest.dll --target "dotnet" --targetargs "test tests/App.Api.UnitTest --no-build" --format cobertura
+        reportgenerator -reports:coverage.cobertura.xml -targetdir:docs/_site/coveragereport -reportTypes:html
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
