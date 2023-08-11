@@ -360,3 +360,6 @@ Migrations/
 coveragereport/
 *.cobertura.xml
 coverage.json
+
+# SonarQube files
+.sonarqube/
