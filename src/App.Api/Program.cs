@@ -1,14 +1,16 @@
+using System.Diagnostics.CodeAnalysis;
 using Serilog;
 
 namespace App.Api;
 
 /// <summary>
-///     Classe de entrada da aplicação.
+/// Classe de inicialização da aplicação.
 /// </summary>
+[ExcludeFromCodeCoverage]
 internal static class Program
 {
     /// <summary>
-    ///     Método de entrada da aplicação.
+    /// Método de inicialização da aplicação.
     /// </summary>
     /// <param name="args">argumentos usado na inicialização da aplicação.</param>
     private static void Main(string[] args)
